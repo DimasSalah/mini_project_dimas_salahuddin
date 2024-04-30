@@ -1,23 +1,20 @@
 import 'package:get/get.dart';
+import 'package:tatrupiah_si/app/data/services/auth_service.dart';
 
 class AuthController extends GetxController {
-  //TODO: Implement AuthController
+  RxString name = ''.obs;
+  RxString password = ''.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void setName(String value) {
+    name.value = value;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void setPassword(String value) {
+    password.value = value;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  Future<void> login() async {
+    final authService = AuthService();
+    await authService.login(name.value, password.value);
   }
-
-  void increment() => count.value++;
 }
