@@ -17,4 +17,9 @@ class AuthController extends GetxController {
     final authService = AuthService();
     await authService.login(name.value, password.value);
   }
+
+  Future<void> register() async {
+    final authService = AuthService();
+    await authService.register(name.value, password.value);
+  }
 }

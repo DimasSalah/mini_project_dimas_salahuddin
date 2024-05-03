@@ -47,7 +47,7 @@ class FooterSection extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.AUTH);
+              Get.toNamed(Routes.LOGIN);
               GetStorage().erase();
             },
             child: Container(

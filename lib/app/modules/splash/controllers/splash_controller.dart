@@ -6,10 +6,9 @@ class SplashController extends GetxController {
   RxInt count = 0.obs;
   void checkLogin() async {
     final getId = await GetStorage().read('id');
-    print(getId);
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (getId == null || getId == 0) {
-        Get.offNamed(Routes.AUTH);
+        Get.offNamed(Routes.LOGIN);
       } else {
         count.value = getId;
         Get.offNamed(Routes.HOME);

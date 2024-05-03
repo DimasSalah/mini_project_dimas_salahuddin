@@ -33,14 +33,13 @@ class AuthService extends GetxService {
         Get.offNamed(Routes.HOME);
         int id = response.data[0]['id'];
         GetStorage().write('id', id);
-        print('ID: $id');
-        logger.i('Login success');
+        logger.i('Berhasil membuat user');
         Get.offAllNamed(Routes.HOME);
         return response;
       }
       return response;
     } catch (e) {
-      logger.e(e);
+      logger.e(e);  
       rethrow;
     }
   }
