@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:tatrupiah_si/app/modules/ai/views/ai_view.dart';
 import 'package:tatrupiah_si/app/modules/profile/views/profile_view.dart';
 
@@ -9,18 +10,20 @@ import '../../home/views/home_view.dart';
 class MainController extends GetxController {
 
    RxString name = ''.obs;
+   RxString createdAt = ''.obs;
 
   void checkLogin () async {
     final userService = UserService();
     await userService.getUser().then((value) {
       name.value = value.name;
+      createdAt.value = value.createdAt;
     });
   }
 
-  final count = 0.obs;
   @override
   void onInit() {
     Get.put(HomeController());
+    checkLogin();
     super.onInit();
   }
 

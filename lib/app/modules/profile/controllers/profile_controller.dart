@@ -1,9 +1,19 @@
 import 'package:get/get.dart';
 
+import '../../../data/services/user_service.dart';
+
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
 
-  final count = 0.obs;
+   RxString name = ''.obs;
+
+  void checkLogin () async {
+    final userService = UserService();
+    await userService.getUser().then((value) {
+      name.value = value.name;
+    });
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +29,4 @@ class ProfileController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
