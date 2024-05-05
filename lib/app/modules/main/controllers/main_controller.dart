@@ -28,8 +28,8 @@ class MainController extends GetxController {
 
   final screen = [
     const HomeView(),
-    const ProfileView(),
     const AiView(),
+    const ProfileView(),
   ];
 
   void changeIndex(int index) {
