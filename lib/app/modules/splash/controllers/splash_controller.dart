@@ -11,7 +11,7 @@ class SplashController extends GetxController {
         Get.offNamed(Routes.ONBOARDING);
       } else {
         count.value = getId;
-        Get.offNamed(Routes.HOME);
+        Get.offNamed(Routes.MAIN);
       }
     });
   }
