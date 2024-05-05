@@ -8,7 +8,7 @@ class SplashController extends GetxController {
     final getId = await GetStorage().read('id');
     Future.delayed(const Duration(seconds: 2), () {
       if (getId == null || getId == 0) {
-        Get.offNamed(Routes.LOGIN);
+        Get.offNamed(Routes.ONBOARDING);
       } else {
         count.value = getId;
         Get.offNamed(Routes.HOME);

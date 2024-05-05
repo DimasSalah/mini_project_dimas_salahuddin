@@ -14,7 +14,7 @@ Future<void> main() async {
   Intl.defaultLocale = 'id_ID';
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Tatarupiah",
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

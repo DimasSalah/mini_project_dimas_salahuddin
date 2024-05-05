@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:tatrupiah_si/app/themes/colors.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../themes/gradient.dart';
 import '../../../themes/text_style.dart';
 import '../controllers/home_controller.dart';
 import 'components/balance_card.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
     controller;
@@ -171,7 +172,9 @@ class HomeView extends GetView<HomeController> {
               borderRadius: BorderRadius.circular(24),
             ),
             elevation: 0,
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(Routes.TRANSACTION);
+            },
             child: Container(
                 padding: const EdgeInsets.all(13),
                 decoration: BoxDecoration(

@@ -22,3 +22,6 @@ Color error = const Color(0xFFC61C1C);
 
 //success colors
 Color success = const Color(0xFF3DC61C);
+
+//transparent colors
+Color transparent = Colors.transparent;
