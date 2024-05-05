@@ -61,13 +61,13 @@ class HomeView extends GetView<HomeController> {
               children: [
                 BalanceCard(
                   title: 'Pendapatan',
-                  icon: 'assets/icons/incomeChart.svg',
+                  icon: 'assets/icons/expanse.svg',
                   color: success,
                 ),
                 const Gap(8),
                 BalanceCard(
                   title: 'Pengeluaran',
-                  icon: 'assets/icons/outcomeChart.svg',
+                  icon: 'assets/icons/income.svg',
                   color: error,
                 ),
               ],
