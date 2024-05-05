@@ -31,15 +31,23 @@ class BalanceCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(
-            icon,
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: white.withOpacity(0.2), width: 2),
+            ),
+            child: SvgPicture.asset(
+              icon,width: 32,
+            ),
           ),
-          Gap(6.5),
+          const Gap(6.5),
           Text(title,
-              style: regular.copyWith(fontSize: 15, color: white)),
+              style: regular.copyWith(fontSize: 15, color: lighter)),
           Text(
             'Rp 0',
-            style: bold.copyWith(fontSize: 24, color: color),
+            style: bold.copyWith(fontSize: 24, color: white),
           ),
         ],
       ),
