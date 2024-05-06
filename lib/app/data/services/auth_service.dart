@@ -3,7 +3,9 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:get/route_manager.dart';
+import 'package:tatrupiah_si/app/data/services/image_service.dart';
 import 'package:tatrupiah_si/app/routes/app_pages.dart';
+import 'package:tatrupiah_si/app/themes/colors.dart';
 
 class AuthService extends GetxService {
   final dio = Dio();
@@ -13,13 +15,14 @@ class AuthService extends GetxService {
   final String apiKey =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zbWFkY3RkYmVvaGl1bm1sb3pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ0MjA1MDUsImV4cCI6MjAyOTk5NjUwNX0.Qu5aoxv1UhAqZfFzTw3G3MhlX-1EeE_xITWw8pwQYxg';
 
-  Future<Response> register(String name, String password) async {
+  Future<Response> register(String id,String name, String icon) async {
     try {
       final response = await dio.post(
         '${baseUrl}users',
         data: {
+          'id' : id,
           'name': name,
-          'password': password,
+          'icon': icon,
         },
         options: Options(
           headers: {
@@ -30,16 +33,14 @@ class AuthService extends GetxService {
         ),
       );
       if (response.statusCode == 201) {
-        Get.offNamed(Routes.HOME);
-        int id = response.data[0]['id'];
-        GetStorage().write('id', id);
         logger.i('Berhasil membuat user');
+        GetStorage().write('id', id);
         Get.offAllNamed(Routes.HOME);
         return response;
       }
       return response;
     } catch (e) {
-      logger.e(e);  
+      logger.e(e);
       rethrow;
     }
   }
