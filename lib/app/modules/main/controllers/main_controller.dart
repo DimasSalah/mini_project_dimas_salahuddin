@@ -9,18 +9,21 @@ import '../../home/views/home_view.dart';
 class MainController extends GetxController {
 
    RxString name = ''.obs;
+   RxString icon = ''.obs;
 
   void checkLogin () async {
     final userService = UserService();
     await userService.getUser().then((value) {
       name.value = value.name;
+      icon.value = value.icon;
     });
   }
 
   final count = 0.obs;
   @override
-  void onInit() {
-    Get.put(HomeController());
+  void onInit() async {
+    checkLogin();
+    print(icon.value);
     super.onInit();
   }
 

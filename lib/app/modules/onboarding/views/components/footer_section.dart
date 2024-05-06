@@ -47,7 +47,7 @@ class FooterSection extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.LOGIN);
+              Get.toNamed(Routes.REGISTER);
               GetStorage().erase();
             },
             child: Container(
@@ -83,16 +83,21 @@ class FooterSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          RichText(
-            text: TextSpan(
-              text: 'Sudah punya akun? ',
-              style: regular.copyWith(fontSize: 13, color: lightActive),
-              children: [
-                TextSpan(
-                  text: 'Masuk',
-                  style: regular.copyWith(fontSize: 13, color: darker),
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.LOGIN);
+            },
+            child: RichText(
+              text: TextSpan(
+                text: 'Sudah punya akun? ',
+                style: regular.copyWith(fontSize: 13, color: lightActive),
+                children: [
+                  TextSpan(
+                    text: 'Masuk',
+                    style: regular.copyWith(fontSize: 13, color: darker),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

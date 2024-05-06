@@ -9,6 +9,7 @@ import 'package:tatrupiah_si/app/themes/colors.dart';
 import '../../../routes/app_pages.dart';
 import '../../../themes/gradient.dart';
 import '../../../themes/text_style.dart';
+import '../../main/controllers/main_controller.dart';
 import '../controllers/home_controller.dart';
 import 'components/balance_card.dart';
 
@@ -16,19 +17,27 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    controller;
+    final mainController = Get.put(MainController());
     return Scaffold(
       backgroundColor: dark,
       appBar: AppBar(
         toolbarHeight: 80,
         leadingWidth: 64,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: CircleAvatar(
-            radius: 26,
-            backgroundColor: lighter,
-          ),
-        ),
+            padding: const EdgeInsets.only(left: 16),
+            child: CircleAvatar(
+              backgroundColor: lightHover,
+              child: ClipOval(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: Obx(() => SvgPicture.string(
+                    mainController.icon.value,
+                    fit: BoxFit.cover,
+                  ),)
+                ),
+              ),
+            )),
         title: Text(DateFormat('E, MMM dd').format(DateTime.now()),
             style: medium.copyWith(fontSize: 24)),
         centerTitle: true,
@@ -152,11 +161,11 @@ class HomeView extends GetView<HomeController> {
                         const Gap(8),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
       floatingActionButton: SizedBox(

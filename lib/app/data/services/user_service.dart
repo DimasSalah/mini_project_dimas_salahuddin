@@ -31,6 +31,7 @@ class UserService extends GetxService {
       return UserModel.fromJson(response.data[0]);
     } catch (e) {
       logger.e(e);
+      print('salah');
       rethrow;
     }
   }
