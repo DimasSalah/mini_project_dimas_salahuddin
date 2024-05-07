@@ -1,11 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tatrupiah_si/app/data/services/auth_service.dart';
 import 'package:tatrupiah_si/app/data/services/image_service.dart';
+import 'package:tatrupiah_si/app/routes/app_pages.dart';
 import 'package:tatrupiah_si/app/themes/colors.dart';
-import 'package:tatrupiah_si/app/themes/text_style.dart';
 
 class AuthController extends GetxController {
   RxString name = ''.obs;
@@ -50,10 +53,10 @@ class AuthController extends GetxController {
     password.value = value;
   }
 
-  Future<void> login() async {
-    final authService = AuthService();
-    await authService.login(name.value, password.value);
-  }
+  // Future<void> login() async {
+  //   final authService = AuthService();
+  //   await authService.login(name.value, password.value);
+  // }
 
   // Future<void> register() async {
   //   final authService = AuthService();
@@ -76,7 +79,6 @@ class AuthController extends GetxController {
         colorText: error,
       );
     }
-
     isLoading.value = true;
     final supabase = Supabase.instance.client;
     final imageService = ImageService();
@@ -90,5 +92,24 @@ class AuthController extends GetxController {
     icon.value = iconResult.data.toString();
     await authService.register(userId, name.value, icon.value);
     isLoading.value = false;
+  }
+
+  Future<void> login () async {
+    final supabase = Supabase.instance.client;
+    final response = await supabase.auth.signInWithPassword(
+      email: email.value,
+      password: password.value,
+    );
+    final userId = response.user!.id;
+    GetStorage().write('id', userId);
+    response.user!.id != null
+        ? debugPrint('Login success')
+        : Get.snackbar(
+            'Error',
+            'Email atau password salah',
+            backgroundColor: light.withOpacity(0.5),
+            colorText: error,
+          );
+    Get.offAllNamed(Routes.MAIN);
   }
 }

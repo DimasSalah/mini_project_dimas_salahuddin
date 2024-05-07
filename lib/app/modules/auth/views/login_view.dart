@@ -46,7 +46,7 @@ class LoginView extends GetView<AuthController> {
                     children: [
                       CustomForm(
                         title: 'Email',
-                        onChanged: controller.setName,
+                        onChanged: controller.setEmail,
                       ),
                       const Gap(10),
                       CustomForm(
