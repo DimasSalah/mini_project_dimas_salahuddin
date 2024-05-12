@@ -18,7 +18,6 @@ class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height * 0.30,
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
       width: double.infinity,
       decoration: BoxDecoration(
@@ -32,10 +31,14 @@ class FooterSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Kelola Semua Transaksi!',
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
               style: semiBold.copyWith(fontSize: 20)),
           const SizedBox(height: 6),
           Text(
             'Selamat datang di Tatarupiah kendalikan keuangan usahamu dengan lebih rapi. Ayo mulai perjalanan finansial Anda bersama kami!',
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
             style: regular.copyWith(
               fontSize: 13,
               color: lightActive,

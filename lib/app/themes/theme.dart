@@ -6,11 +6,14 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: white,
     colorSchemeSeed: dark,
+    appBarTheme: AppBarTheme(
+      backgroundColor: white,
+      surfaceTintColor: transparent,
+    ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: normal,
       selectionColor: normal,
       selectionHandleColor: normal,
     ),
-    
   );
 }

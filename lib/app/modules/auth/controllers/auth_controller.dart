@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -65,12 +64,29 @@ class AuthController extends GetxController {
 
   Future<void> register() async {
     if (formKey.currentState!.validate()) {
-      Get.snackbar(
-        'Succes',
-        'Berhasil membuat user',
-        backgroundColor: light.withOpacity(0.5),
-        colorText: success,
-      );
+      isLoading.value = true;
+      final imageService = ImageService();
+      final authService = AuthService();
+      final iconResult = await imageService.imageUrl(name.value);
+      try {
+        final response =
+            await authService.registerAuth(email.value, password.value);
+        if (response.statusCode == 200) {
+          final id = response.data['user']['id'];
+          GetStorage().write('id', id);
+          icon.value = iconResult.data.toString();
+          await authService.registerUser(id, name.value, icon.value);
+          Get.offAllNamed(Routes.MAIN);
+        }
+      } catch (e) {
+        Get.snackbar(
+          'Error',
+          'Email sudah terdaftar',
+          backgroundColor: light.withOpacity(0.5),
+          colorText: error,
+        );
+      }
+      isLoading.value = false;
     } else {
       Get.snackbar(
         'Error',
@@ -79,37 +95,10 @@ class AuthController extends GetxController {
         colorText: error,
       );
     }
-    isLoading.value = true;
-    final supabase = Supabase.instance.client;
-    final imageService = ImageService();
-    final authService = AuthService();
-    await supabase.auth.signUp(
-      email: email.value,
-      password: password.value,
-    );
-    final userId = supabase.auth.currentSession!.user.id;
-    final iconResult = await imageService.imageUrl(name.value);
-    icon.value = iconResult.data.toString();
-    await authService.register(userId, name.value, icon.value);
-    isLoading.value = false;
   }
 
-  Future<void> login () async {
-    final supabase = Supabase.instance.client;
-    final response = await supabase.auth.signInWithPassword(
-      email: email.value,
-      password: password.value,
-    );
-    final userId = response.user!.id;
-    GetStorage().write('id', userId);
-    response.user!.id != null
-        ? debugPrint('Login success')
-        : Get.snackbar(
-            'Error',
-            'Email atau password salah',
-            backgroundColor: light.withOpacity(0.5),
-            colorText: error,
-          );
-    Get.offAllNamed(Routes.MAIN);
+  Future<void> login() async {
+    final authService = AuthService();
+    await authService.loginAuth(email.value, password.value);
   }
 }

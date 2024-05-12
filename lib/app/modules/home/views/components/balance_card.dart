@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:tatrupiah_si/app/utils/currency_format.dart';
 
 import '../../../../themes/colors.dart';
 import '../../../../themes/text_style.dart';
@@ -11,11 +12,13 @@ class BalanceCard extends StatelessWidget {
   final String title;
   final String icon;
   final Color color;
+  final int balance;
   const BalanceCard({
     super.key,
     required this.title,
     required this.icon,
     required this.color,
+    required this.balance,
   });
 
   @override
@@ -46,7 +49,7 @@ class BalanceCard extends StatelessWidget {
           Text(title,
               style: regular.copyWith(fontSize: 15, color: lighter)),
           Text(
-            'Rp 0',
+            formatCurrencyShort(balance.toString()),
             style: bold.copyWith(fontSize: 24, color: white),
           ),
         ],
