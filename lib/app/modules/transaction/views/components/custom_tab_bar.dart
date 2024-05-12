@@ -135,6 +135,7 @@ class CustomTabBar extends StatelessWidget {
                             title: Text(key),
                             onTap: () {
                               controller.onChangeCategoryValue(value);
+                              controller.onChangeCategoryKey(key);
                               Get.back();
                             },
                           );
@@ -240,7 +241,7 @@ class CustomTabBar extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      controller.submitIncome();
+                      controller.submit();
                     },
                     child: Container(
                       padding: const EdgeInsets.all(24.5),

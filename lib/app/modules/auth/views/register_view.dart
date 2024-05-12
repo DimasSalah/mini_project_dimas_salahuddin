@@ -84,7 +84,6 @@ class RegisterView extends GetView<AuthController> {
                   const Gap(14),
                   GestureDetector(
                     onTap: () {
-                      print('pencet');
                       controller.register();
                     },
                     child: Container(

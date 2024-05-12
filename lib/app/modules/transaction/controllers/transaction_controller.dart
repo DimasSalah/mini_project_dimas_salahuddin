@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../data/services/transaction_service.dart';
+import '../../../routes/app_pages.dart';
+import '../../home/controllers/home_controller.dart';
+
 class TransactionController extends GetxController {
   RxBool changeTab = false.obs;
   RxString categoryValue = ''.obs;
   RxString categoryKey = ''.obs;
   RxString enteredValue = '0'.obs;
   Rx<DateTime> transactionDate = DateTime.now().obs;
-  RxBool numberPad = false.obs;
-
   TextEditingController note = TextEditingController();
   
   Map<String, String> categoryExpanse = {
@@ -24,7 +26,7 @@ class TransactionController extends GetxController {
   Map<String, String> categoryIncome = {
     'Gaji': 'assets/icons/salary.svg',
     'Investasi': 'assets/icons/investment.svg',
-    'Pekerjaan Sampingan': 'assets/icons/sidejob.svg',
+    'Sampingan': 'assets/icons/sidejob.svg',
     'Hadiah': 'assets/icons/gift.svg',
     'Lainnya': 'assets/icons/other.svg',
   };
@@ -53,18 +55,40 @@ class TransactionController extends GetxController {
     categoryKey.value = value;
   }
 
-  void visibleNumberPad(bool value) { //use for show or hide number pad
-    numberPad.value = value;
+  //if user not choose category, it will return the first category
+  String getIconPath() {
+    if (changeTab.value == true && categoryValue.value == '') {
+      return categoryExpanse.values.elementAt(0);
+    } else if (changeTab.value == false && categoryValue.value == '') {
+      return categoryIncome.values.elementAt(0);
+    } else {
+      return categoryValue.value;
+    }
   }
 
-  void submitIncome() {
-    //ptrint change tab value
-    print(changeTab.value == true ? 'Pengeluaran' : 'Pendapatan');
-    print('date ${transactionDate.value}');
-    print('uang ${enteredValue.value}');
-    print('key ${categoryValue.value == '' ? categoryIncome.keys.elementAt(0) : categoryValue.value}');
-    print(note.text);
-
+  String getCategory() {
+    if (changeTab.value == true && categoryValue.value == '') {
+      return categoryExpanse.keys.elementAt(0);
+    } else if (changeTab.value == false && categoryValue.value == '') {
+      return categoryIncome.keys.elementAt(0);
+    } else {
+      return categoryKey.value;
+    }
   }
 
+  Future<void> submit()  async {
+    final transactionService = TransactionService();
+    await transactionService.postTransaction(
+      changeTab.value == true ? 'Pengeluaran' : 'Pendapatan',
+      changeTab.value == true ? 0 : int.parse(enteredValue.value),
+      changeTab.value == true ? int.parse(enteredValue.value) : 0,
+      getIconPath(),
+      getCategory(),
+      note.text,
+      transactionDate.value.toString(),
+    );
+    Get.put(HomeController()).getTransaction();
+    Get.put(HomeController()).getTotalBalance();
+    Get.offNamed(Routes.MAIN);
+  }
 }
