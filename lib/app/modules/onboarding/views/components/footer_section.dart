@@ -30,28 +30,27 @@ class FooterSection extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Kelola Semua Transaksi!',
+          Text('Kelola Semua Keuanganmu!',
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
               style: semiBold.copyWith(fontSize: 20)),
           const SizedBox(height: 6),
           Text(
-            'Selamat datang di Tatarupiah kendalikan keuangan usahamu dengan lebih rapi. Ayo mulai perjalanan finansial Anda bersama kami!',
+            'Kendalikan keuangan pribadimu dengan lebih rapi. Siap bertemu dengan angka angka?',
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: regular.copyWith(
-              fontSize: 13,
+              fontSize: 14,
               color: lightActive,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 8,
+            height: 14,
           ),
           GestureDetector(
             onTap: () {
               Get.toNamed(Routes.REGISTER);
-              GetStorage().erase();
             },
             child: Container(
               padding:
@@ -85,7 +84,7 @@ class FooterSection extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 14),
           GestureDetector(
             onTap: () {
               Get.toNamed(Routes.LOGIN);

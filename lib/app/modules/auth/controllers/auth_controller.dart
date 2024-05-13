@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tatrupiah_si/app/data/services/auth_service.dart';
 import 'package:tatrupiah_si/app/data/services/image_service.dart';
 import 'package:tatrupiah_si/app/routes/app_pages.dart';

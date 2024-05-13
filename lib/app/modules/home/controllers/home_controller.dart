@@ -5,9 +5,11 @@ import 'package:tatrupiah_si/app/data/services/transaction_service.dart';
 
 import '../../../data/model/transaction_model.dart';
 import '../../../data/services/total_balance_service.dart';
+import '../../../data/services/user_service.dart';
 
 class HomeController extends GetxController {
   RxString name = ''.obs;
+  RxString icon = ''.obs;
   RxInt totalIncome = 0.obs;
   RxInt totalExpense = 0.obs;
   Rx<DateTime> firstDayOfMonth = DateTime(DateTime.now().year, DateTime.now().month, 1).obs; // first day of the month
@@ -39,18 +41,26 @@ class HomeController extends GetxController {
     });
   }
 
-  void updateTransaction() {
-    getTransaction();
+  void updateTransaction() async {
+    await getTransaction();
     getTotalBalance();
     update(['transaction']);
   }
 
-  void selectedDate(DateTime date) {
+  void selectedDate(DateTime date) async {
     firstTimeDay.value = date;
     lastTimeDay.value = date.add(const Duration(days: 1));
-    getTransaction();
+    await getTransaction();
     getTotalBalance();
     update(['transaction']);
+  }
+
+  
+  void getUser() async {
+    final userService = UserService();
+    await userService.getUser().then((value) {
+      icon.value = value.icon;
+    });
   }
 
 
@@ -59,6 +69,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    getUser();
     getTransaction();
     getTotalBalance();
     super.onInit();

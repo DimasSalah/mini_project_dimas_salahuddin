@@ -19,7 +19,8 @@ class LoginView extends GetView<AuthController> {
       body: Form(
         key: controller.formKey,
         child: Padding(
-          padding: const EdgeInsets.only(left: 23, right: 23, top: 70, bottom: 20),
+          padding:
+              const EdgeInsets.only(left: 23, right: 23, top: 70, bottom: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,9 +50,28 @@ class LoginView extends GetView<AuthController> {
                         onChanged: controller.setEmail,
                       ),
                       const Gap(10),
-                      CustomForm(
-                        title: 'Password',
-                        onChanged: controller.setPassword,
+                      Obx(
+                        () => CustomForm(
+                          title: 'Password',
+                          onChanged: controller.setPassword,
+                          obscureText: controller.obscureText.value,
+                          validator: (pwd) => controller.validatePassword(pwd),
+                          icon: GestureDetector(
+                            onTap: () {
+                              controller.obscureText.value =
+                                  !controller.obscureText.value;
+                            },
+                            child: Container(
+                              width: 10,
+                              height: 20,
+                              child: SvgPicture.asset(
+                                controller.obscureText.value
+                                    ? 'assets/icons/eye-closed.svg'
+                                    : 'assets/icons/eye-open.svg',
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       const Gap(4),
                       Text(

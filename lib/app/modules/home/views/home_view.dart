@@ -8,7 +8,6 @@ import 'package:tatrupiah_si/app/data/services/transaction_service.dart';
 import 'package:tatrupiah_si/app/modules/home/views/components/transaction_card.dart';
 import 'package:tatrupiah_si/app/themes/colors.dart';
 import '../../../themes/text_style.dart';
-import '../../main/controllers/main_controller.dart';
 import '../controllers/home_controller.dart';
 import 'components/balance_card.dart';
 import 'components/custom_dialog.dart';
@@ -19,7 +18,6 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     controller;
-    final mainController = Get.put(MainController());
     return Scaffold(
       backgroundColor: dark,
       appBar: AppBar(
@@ -34,10 +32,10 @@ class HomeView extends GetView<HomeController> {
                   width: 50,
                   height: 50,
                   child: Obx(
-                    () => mainController.icon.value == ''
+                    () => controller.icon.value == ''
                         ? Icon(Icons.person, size: 30, color: dark)
                         : SvgPicture.string(
-                            mainController.icon.value,
+                            controller.icon.value,
                             fit: BoxFit.cover,
                           ),
                   ),
@@ -187,7 +185,7 @@ class HomeView extends GetView<HomeController> {
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
-                                    'Kamu belum menambahkan laporan keuangan pada tanggal ini',
+                                    'Terlihat tidak ada pencatatan pada tanggal ini',
                                     style: regular.copyWith(fontSize: 15),
                                     textAlign: TextAlign.center,
                                   ),

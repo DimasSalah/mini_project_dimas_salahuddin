@@ -35,4 +35,32 @@ class UserService extends GetxService {
       rethrow;
     }
   }
+
+  Future<void> updateUser(String name,icon) async {
+    try {
+      final response = await dio.patch(
+        '${baseUrl}users?id=eq.$idUser',
+        data: [
+          {
+            'name': name,
+            'icon': icon,
+          }
+        
+        ],
+        options: Options(
+          headers: {
+            'apikey': apiKey,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        logger.i(response.data);
+      }
+    } catch (e) {
+      logger.e(e);
+      rethrow;
+    }
+  }
 }

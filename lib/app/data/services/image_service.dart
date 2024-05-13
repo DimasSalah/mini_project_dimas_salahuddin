@@ -5,6 +5,7 @@ import 'package:logger/logger.dart';
 class ImageService extends GetxService {
   final dio = Dio();
   final logger = Logger();
+  
   Future<Response> imageUrl(String name) async {
     try {
       Response response = await dio.get('https://api.dicebear.com/8.x/notionists/svg?seed=$name');
