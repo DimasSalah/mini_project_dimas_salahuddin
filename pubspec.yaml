@@ -19,8 +19,16 @@ dependencies:
   logger: ^2.2.0
   weekly_calendar: ^0.1.2
   lottie: ^3.1.0
+  envied: ^0.5.4+1
+  build_runner: ^2.4.9
+  dash_chat_2: ^0.0.20
+  chat_gpt_sdk: ^3.0.4
+
+dependency_overrides:
+  intl: ^0.18.0
 
 dev_dependencies: 
+  envied_generator: ^0.5.4+1
   flutter_lints: ^3.0.0
   flutter_test: 
     sdk: flutter

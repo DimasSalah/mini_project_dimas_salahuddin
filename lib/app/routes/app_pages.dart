@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../modules/ai/bindings/ai_binding.dart';
+import '../modules/ai/views/chat_view.dart';
 import '../modules/ai/views/ai_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/login_view.dart';
@@ -55,6 +57,9 @@ class AppPages {
       name: _Paths.TRANSACTION,
       page: () => const TransactionView(),
       binding: TransactionBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
     ),
     GetPage(
       name: _Paths.MAIN,
@@ -69,6 +74,11 @@ class AppPages {
     GetPage(
       name: _Paths.AI,
       page: () => const AiView(),
+      binding: AiBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT,
+      page: () => const ChatView(),
       binding: AiBinding(),
     ),
   ];

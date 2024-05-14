@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tatrupiah_si/app/modules/ai/controllers/ai_controller.dart';
 import 'package:tatrupiah_si/app/modules/ai/views/ai_view.dart';
 import 'package:tatrupiah_si/app/modules/profile/controllers/profile_controller.dart';
 import 'package:tatrupiah_si/app/modules/profile/views/profile_view.dart';
@@ -13,6 +14,7 @@ class MainController extends GetxController {
   void onInit() async {
     Get.put(HomeController());
     Get.put(ProfileController());
+    Get.put(AiController());
     super.onInit();
   }
 
