@@ -57,6 +57,7 @@ class InitialMessage extends StatelessWidget {
                   style: regular.copyWith(fontSize: 13),
                 ),
                 TextFormField(
+                  style: semiBold.copyWith(fontSize: 14),
                   onChanged: onChanged,
                   initialValue: formatCurrency(
                       homeController.totalIncome.value.toString()),
@@ -71,7 +72,7 @@ class InitialMessage extends StatelessWidget {
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       constraints: BoxConstraints(
-                          maxWidth: Get.width * 0.4, maxHeight: 30)),
+                          maxWidth: Get.width * 0.3, maxHeight: 30)),
                 )
               ],
             ),
