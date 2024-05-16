@@ -15,7 +15,9 @@ class AiView extends GetView<AiController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Ai Assistent',style: medium.copyWith(fontSize: 24),),
+          title: Text(
+            key: const Key('ai_assistent'),
+            'Ai Assistent',style: medium.copyWith(fontSize: 24),),
           centerTitle: true,
         ),
         body: Padding(
@@ -39,6 +41,7 @@ class AiView extends GetView<AiController> {
               ),
               const Gap(14),
               Text(
+                key: Key('title'),
                 'Permudah penataan keuanganmu dengan bantuan Ai',
                 style: semiBold.copyWith(fontSize: 20, color: dark),
                 textAlign: TextAlign.center,
@@ -46,6 +49,7 @@ class AiView extends GetView<AiController> {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
+                key: Key('description'),
                 'Rasakan pengalaman baru dengan AI untuk mengelola dana secara efisien dan hemat waktu.',
                 style: regular.copyWith(fontSize: 14, color: lightActive),
                 textAlign: TextAlign.center,
@@ -56,6 +60,7 @@ class AiView extends GetView<AiController> {
               GestureDetector(
                 onTap: () => Get.toNamed(Routes.CHAT),
                 child: Container(
+                  key: const Key('button'),
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -63,6 +68,7 @@ class AiView extends GetView<AiController> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
+                    key: const Key('text_button'),
                     'Mulai Obrolan',
                     style: medium.copyWith(fontSize: 16, color: light),
                     textAlign: TextAlign.center,

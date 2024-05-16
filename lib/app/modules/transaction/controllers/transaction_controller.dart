@@ -87,8 +87,7 @@ class TransactionController extends GetxController {
       note.text,
       transactionDate.value.toString(),
     );
-    Get.put(HomeController()).getTransaction();
-    Get.put(HomeController()).getTotalBalance();
+    Get.put(HomeController()).updateTransaction();
     Get.offNamed(Routes.MAIN);
   }
 }

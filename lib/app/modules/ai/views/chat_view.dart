@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:tatrupiah_si/app/modules/ai/controllers/ai_controller.dart';
-import 'package:tatrupiah_si/app/modules/home/controllers/home_controller.dart';
 import 'package:tatrupiah_si/app/themes/colors.dart';
 
-import '../../../themes/gradient.dart';
 import '../../../themes/text_style.dart';
 import 'components/bottom_chat.dart';
 import 'components/intial_message.dart';
@@ -85,7 +82,9 @@ class ChatView extends GetView<AiController> {
                                     radius: 20,
                                     backgroundColor: normal,
                                     child: convo.isMe
-                                        ? SvgPicture.string(controller.iconSvg())
+                                        ? ClipOval(
+                                            child: SvgPicture.string(
+                                                controller.iconSvg()))
                                         : Image.asset('assets/icons/bot.png')),
                               )
                             ],

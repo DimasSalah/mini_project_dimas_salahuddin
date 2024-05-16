@@ -15,6 +15,7 @@ class FloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      key: Key('floating_button'),
       height: 74,
       width: 84,
       child: Padding(
@@ -36,6 +37,7 @@ class FloatingButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: SvgPicture.asset(
+                key: const Key('plus'),
                 'assets/icons/plus.svg',
               )),
         ),

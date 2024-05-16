@@ -4,14 +4,14 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:tatrupiah_si/app/data/model/user_model.dart';
 
+import '../../constant/key.dart';
+
 class UserService extends GetxService {
   final dio = Dio();
   final logger = Logger();
   final idUser = GetStorage().read('id');
   final String baseUrl = 'https://msmadctdbeohiunmlozf.supabase.co/rest/v1/';
-  final String apiKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zbWFkY3RkYmVvaGl1bm1sb3pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ0MjA1MDUsImV4cCI6MjAyOTk5NjUwNX0.Qu5aoxv1UhAqZfFzTw3G3MhlX-1EeE_xITWw8pwQYxg';
-  
+  final String apiKey = supabaseKey;
 
   Future<UserModel> getUser() async {
     try {
@@ -36,7 +36,7 @@ class UserService extends GetxService {
     }
   }
 
-  Future<void> updateUser(String name,icon) async {
+  Future<void> updateUser(String name, icon) async {
     try {
       final response = await dio.patch(
         '${baseUrl}users?id=eq.$idUser',
@@ -45,7 +45,6 @@ class UserService extends GetxService {
             'name': name,
             'icon': icon,
           }
-        
         ],
         options: Options(
           headers: {

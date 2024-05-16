@@ -14,44 +14,49 @@ class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
   @override
   Widget build(BuildContext context) {
-    controller;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Profil Saya', style: semiBold.copyWith(fontSize: 24)),
+        title: Text(
+            key: Key('appBar'),
+            'Profil Saya',
+            style: semiBold.copyWith(fontSize: 24)),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: GestureDetector(
-              onTap: () => controller.logout(),
-              child: Icon(Icons.logout, color: error, size: 25)),
+                onTap: () => controller.logout(),
+                child: Icon(Icons.logout, color: error, size: 25)),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 23,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  height: Get.height * 0.45,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: normal,
-                    borderRadius: BorderRadius.circular(24),
+                key: Key('profileCard'),
+                height: Get.height * 0.45,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: normal,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Obx(
+                  () => SvgPicture.string(
+                    controller.icon.value,
+                    fit: BoxFit.fitHeight,
                   ),
-                  child: Obx(
-                    () => SvgPicture.string(
-                      controller.icon.value,
-                      fit: BoxFit.fitHeight,
-                    ),
-                  )),
+                ),
+              ),
               const Gap(20),
               Obx(
                 () => SizedBox(
                   height: 50,
                   child: TextFormField(
+                    key: Key('form'),
                     initialValue: controller.name.value,
                     onChanged: controller.changeName,
                     autofocus: controller.isEdit.value,
@@ -126,8 +131,8 @@ class ProfileView extends GetView<ProfileController> {
                             },
                             child: Text(
                               'Simpan',
-                              style: medium.copyWith(
-                                  fontSize: 16, color: normal),
+                              style:
+                                  medium.copyWith(fontSize: 16, color: normal),
                             ),
                           ),
                         ],

@@ -6,12 +6,13 @@ import 'package:get/route_manager.dart';
 import 'package:tatrupiah_si/app/routes/app_pages.dart';
 import 'package:tatrupiah_si/app/themes/colors.dart';
 
+import '../../constant/key.dart';
+
 class AuthService extends GetxService {
   final dio = Dio();
   final logger = Logger();
   final String baseUrl = 'https://msmadctdbeohiunmlozf.supabase.co';
-  final String apiKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zbWFkY3RkYmVvaGl1bm1sb3pmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ0MjA1MDUsImV4cCI6MjAyOTk5NjUwNX0.Qu5aoxv1UhAqZfFzTw3G3MhlX-1EeE_xITWw8pwQYxg';
+  final String apiKey = supabaseKey;
 
   Future<Response> registerUser(String userId,String name, String icon) async {
     try {

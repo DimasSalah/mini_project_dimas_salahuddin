@@ -6,7 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import 'app/routes/app_pages.dart';
-import 'app/themes/theme.dart';
+import 'app/themes/system.dart';
 
 Future<void> main() async {
   await GetStorage.init();

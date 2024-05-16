@@ -17,7 +17,6 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    controller;
     return Scaffold(
       backgroundColor: dark,
       appBar: AppBar(
@@ -42,7 +41,9 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             )),
-        title: Text(DateFormat('E, MMM dd').format(DateTime.now()),
+        title: Text(
+            key: const Key('title'),
+            DateFormat('E, MMM dd').format(DateTime.now()),
             style: medium.copyWith(fontSize: 24)),
         centerTitle: true,
         actions: [
@@ -74,6 +75,7 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   Obx(
                     () => BalanceCard(
+                      key: const Key('balance_card'),
                       title: 'Pendapatan',
                       icon: 'assets/icons/expanse.svg',
                       color: success,
@@ -83,6 +85,7 @@ class HomeView extends GetView<HomeController> {
                   const Gap(8),
                   Obx(
                     () => BalanceCard(
+                      key: const Key('balance_card'),
                       title: 'Pengeluaran',
                       icon: 'assets/icons/income.svg',
                       color: error,
@@ -95,6 +98,7 @@ class HomeView extends GetView<HomeController> {
             const Gap(6),
             //bottom section
             Container(
+              key: const Key('bottom_section'),
               constraints: BoxConstraints(
                 minHeight: Get.height * 0.58,
               ),
@@ -124,6 +128,24 @@ class HomeView extends GetView<HomeController> {
                             initialDate: controller.firstTimeDay.value,
                             firstDate: DateTime(2021),
                             lastDate: DateTime(2050),
+                            builder: (context, child) {
+                              return Theme(data: 
+                              ThemeData.dark().copyWith(
+                                colorScheme:  ColorScheme.dark(
+                                  primary: dark,
+                                  onPrimary: white,
+                                  surface: white,
+                                  onSurface: dark,
+                                  onBackground: white,
+                                ),
+                                primaryColor: dark,
+                                textSelectionTheme: TextSelectionThemeData(cursorColor: error),
+                                buttonTheme: ButtonThemeData(
+                                  buttonColor: error,
+                                  textTheme: ButtonTextTheme.primary,
+                                ),
+                              ), child: child!);
+                            },
                           );
                           if (selectedDate != null) {
                             controller.selectedDate(selectedDate);
