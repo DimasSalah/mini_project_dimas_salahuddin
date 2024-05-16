@@ -52,3 +52,8 @@ flutter:
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
   uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.jpg"

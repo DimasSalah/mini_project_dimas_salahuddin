@@ -17,7 +17,6 @@ class HomeController extends GetxController {
   Rx<DateTime> firstTimeDay = DateTime.now().obs;
   Rx<DateTime> lastTimeDay = DateTime.now().add(const Duration(days: 1)).obs;
 
-
   var transactions = <TransactionModel>[].obs;
 
   Future<void> getTransaction() async {
